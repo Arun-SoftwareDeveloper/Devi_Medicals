@@ -1,0 +1,99 @@
+/* Reset some default styles */
+body,
+h1,
+h4,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+/* Body styling */
+body {
+  font-family: "Arial", sans-serif;
+}
+
+/* Navigation bar styling */
+.navbar {
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  font-size: 24px;
+}
+
+.navbar-nav .nav-link {
+  color: #333;
+}
+
+.navbar-nav .nav-link:hover {
+  color: rgb(143, 199, 86);
+}
+
+/* Main container styling */
+.container {
+  margin-top: 40px;
+}
+
+/* Header styling */
+h1 {
+  color: #333;
+  font-size: 36px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Paragraph styling */
+p {
+  color: #555;
+  font-size: 18px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* Carousel styling */
+.carousel-inner img {
+  width: 100%;
+  height: 450px;
+}
+
+/* About Us Section styling */
+h1#about {
+  text-align: center;
+  margin-top: 40px;
+  color: rgb(81, 212, 83);
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.row {
+  margin-top: 30px;
+}
+
+.col-md-3 {
+  padding: 10px;
+  margin: 35px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease-in-out;
+  margin-bottom: 30px;
+}
+
+.col-md-3:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+h4 {
+  color: rgb(106, 185, 45);
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* WhatsApp icon styling */
+span i {
+  font-size: 24px;
+  margin-right: 5px;
+  color: green;
+}
