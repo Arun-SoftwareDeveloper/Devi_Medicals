@@ -153,8 +153,8 @@
       </div>
     </div>
     <div class="container mt-4" id="contact">
-      <h1>Contact Us</h1>
-      <form action="https://formspree.io/your_email_here" method="POST">
+      <h1 style="color: rgb(113, 194, 87)">Contact Us</h1>
+      <form onsubmit="sendWhatsAppMessage(); return false;">
         <div class="form-group">
           <label for="name">Name:</label>
           <input
@@ -172,7 +172,17 @@
             class="form-control"
             id="email"
             name="_replyto"
-            required
+            placeholder="(optional)"
+          />
+        </div>
+        <div class="form-group">
+          <label for="email">Mobile Number:</label>
+          <input
+            type="number"
+            class="form-control"
+            id="mobileNumber"
+            name="_replyto"
+            placeholder="(optional)"
           />
         </div>
         <div class="form-group">
@@ -199,6 +209,7 @@
       <i class="fab fa-whatsapp" style="color: green"></i>
       Chat with us on WhatsApp
     </p>
+
     <!-- Footer -->
     <footer class="footer mt-4">
       <div class="container">
@@ -246,19 +257,26 @@
       crossorigin="anonymous"
     ></script>
     <script>
-      // Function to open WhatsApp chat
-      function openWhatsApp() {
-        var phoneNumber = "6381873526"; // Replace with your WhatsApp number
-        var message = "Hello! I have a question."; // Optional initial message
+      function sendWhatsAppMessage() {
+        var phoneNumber = document.getElementById("mobileNumber").value;
+        var name = document.getElementById("name").value;
+        var email = document.getElementById("email").value;
+        var message = document.getElementById("message").value;
 
-        // Create the WhatsApp link
+        var whatsappMessage =
+          "New contact from " +
+          name +
+          " (" +
+          email +
+          ")\n\nMessage: " +
+          message;
+
         var whatsappLink =
           "https://wa.me/" +
           phoneNumber +
           "/?text=" +
-          encodeURIComponent(message);
+          encodeURIComponent(whatsappMessage);
 
-        // Open the link in a new tab
         window.open(whatsappLink, "_blank");
       }
     </script>
