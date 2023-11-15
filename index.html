@@ -18,6 +18,16 @@
     />
     <link rel="stylesheet" href="style.css" />
   </head>
+  <style>
+    #whatsapp-widget {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      cursor: pointer;
+      border-radius: 10px;
+      z-index: 1000;
+    }
+  </style>
   <body>
     <!-- Bootstrap navigation bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -153,8 +163,8 @@
       </div>
     </div>
     <div class="container mt-4" id="contact">
-      <h1 style="color: rgb(113, 194, 87)">Contact Us</h1>
-      <form onsubmit="sendWhatsAppMessage(); return false;">
+      <h1>Contact Us</h1>
+      <form onsubmit="return sendWhatsAppMessage();">
         <div class="form-group">
           <label for="name">Name:</label>
           <input
@@ -166,23 +176,23 @@
           />
         </div>
         <div class="form-group">
+          <label for="name">Mobile Number:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="mobileNumber"
+            name="name"
+            required
+          />
+        </div>
+        <div class="form-group">
           <label for="email">Email:</label>
           <input
             type="email"
             class="form-control"
             id="email"
             name="_replyto"
-            placeholder="(optional)"
-          />
-        </div>
-        <div class="form-group">
-          <label for="email">Mobile Number:</label>
-          <input
-            type="number"
-            class="form-control"
-            id="mobileNumber"
-            name="_replyto"
-            placeholder="(optional)"
+            required
           />
         </div>
         <div class="form-group">
@@ -200,10 +210,11 @@
     </div>
     <img
       src="./Images/whatsapp.png"
-      width="30px"
+      width="50px"
       class="text-right"
-      onclick="openWhatsApp()"
+      id="whatsapp-widget"
       style="cursor: pointer"
+      onclick="openWhatsApp()"
     />
     <p onclick="openWhatsApp()">
       <i class="fab fa-whatsapp" style="color: green"></i>
@@ -257,12 +268,31 @@
       crossorigin="anonymous"
     ></script>
     <script>
-      function sendWhatsAppMessage() {
-        var phoneNumber = document.getElementById("mobileNumber").value;
-        var name = document.getElementById("name").value;
-        var email = document.getElementById("email").value;
-        var message = document.getElementById("message").value;
+      // Function to open WhatsApp chat
+      function openWhatsApp() {
+        var phoneNumber = "6381873526"; // Replace with your WhatsApp number
+        var message = "Are you available take order?"; // Optional initial message
 
+        // Create the WhatsApp link
+        var whatsappLink =
+          "https://wa.me/" +
+          phoneNumber +
+          "/?text=" +
+          encodeURIComponent(message);
+
+        // Open the link in a new tab
+        window.open(whatsappLink, "_blank");
+      }
+
+      // Function to send WhatsApp message
+      function sendWhatsAppMessage() {
+        var phoneNumber = "6381873526"; // Replace with your WhatsApp number
+        var name = document.getElementById("name").value; // Get the name from the form
+        var email = document.getElementById("email").value;
+        var mobileNumber = document.getElementById("mobileNumber").value; // Get the email from the form
+        var message = document.getElementById("message").value; // Get the message from the form
+
+        // Construct the WhatsApp message
         var whatsappMessage =
           "New contact from " +
           name +
@@ -271,13 +301,34 @@
           ")\n\nMessage: " +
           message;
 
+        // Create the WhatsApp link
         var whatsappLink =
           "https://wa.me/" +
           phoneNumber +
           "/?text=" +
           encodeURIComponent(whatsappMessage);
 
+        // Open the link in a new tab
         window.open(whatsappLink, "_blank");
+
+        // Optionally, you can submit the form to a server here if needed
+        // For example, using Ajax to send the form data to a server script
+        // and handle the server-side processing.
+        // Example:
+        // $.ajax({
+        //   type: "POST",
+        //   url: "your_server_script.php",
+        //   data: { name: name, email: email, message: message },
+        //   success: function(response) {
+        //     console.log("Form data sent to server:", response);
+        //   },
+        //   error: function(error) {
+        //     console.error("Error sending form data:", error);
+        //   }
+        // });
+
+        // Prevent the default form submission
+        return false;
       }
     </script>
   </body>
